@@ -4,17 +4,17 @@ import { WavyBackground } from "@/components/ui/wavy-bg";
 
 export default async function Home() {
   return (
-    <WavyBackground>
+    <WavyBackground blur={5} waveOpacity={0.4}>
       <div className="flex flex-col items-center gap-8">
         <div>
           <TypographyH1 className="text-center text-2xl font-bold text-white md:text-4xl lg:text-7xl">
-            Hero waves are cool
+            Canvas Hero
           </TypographyH1>
           <TypographyP className="text-center text-lg font-normal text-white md:text-xl">
             Leverage the power of canvas to create a beautiful hero section
           </TypographyP>
         </div>
-        <Button>Get Started</Button>
+        <Button variant="secondary">Get Started</Button>
       </div>
     </WavyBackground>
   );
