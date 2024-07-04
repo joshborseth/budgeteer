@@ -14,14 +14,14 @@ export default async function Page() {
       <div className="flex max-w-lg flex-col items-center gap-8 text-center">
         <div>
           <TypographyH1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
-            PiggyPal
+            404
           </TypographyH1>
           <TypographyP className="text-lg font-normal md:text-xl">
-            Track your savings so you can buy cool things.
+            It looks like you&apos;re lost.
           </TypographyP>
         </div>
         <Link href={"/dashboard"}>
-          <Button>Get Started</Button>
+          <Button>Dashboard</Button>
         </Link>
       </div>
     </WavyBackground>
