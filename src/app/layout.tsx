@@ -1,8 +1,10 @@
 import { NextAuthSessionProvider } from "@/components/SessionProvider";
+import SignInOrSignOut from "@/components/SignInOrSignOut";
+import { TypographyH1 } from "@/components/ui/typography";
+import { getServerAuthSession } from "@/server/auth";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
-import { getServerSession } from "next-auth";
 
 export const metadata = {
   title: "Budgeteer",
@@ -15,11 +17,23 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const otherSession = await getServerAuthSession();
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <NextAuthSessionProvider session={session}>
-        <body>{children}</body>
+      <NextAuthSessionProvider session={otherSession}>
+        <body>
+          {otherSession?.user.id ? (
+            <>
+              {children}
+              <SignInOrSignOut />
+            </>
+          ) : (
+            <div>
+              <TypographyH1>Not Signed In</TypographyH1>
+              <SignInOrSignOut />
+            </div>
+          )}
+        </body>
       </NextAuthSessionProvider>
     </html>
   );
