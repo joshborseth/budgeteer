@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyP } from "@/components/ui/typography";
-import { WavyBackground } from "@/components/ui/wavy-bg";
+import { WavyBackground } from "@/components/wavy-bg";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 

@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
 /* eslint-disable */
 //@ts-nocheck we need to ignore this because its dumb code copied from aceternity
+import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 

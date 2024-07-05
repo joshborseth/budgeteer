@@ -1,13 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyP } from "@/components/ui/typography";
-import { WavyBackground } from "@/components/ui/wavy-bg";
+import { WavyBackground } from "@/components/wavy-bg";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 
 export default async function Page() {
   return (
     <WavyBackground
-      colors={["hsl(262.1 83.3% 57.8%)"]}
+      colors={[
+        "hsl(262.1 83.3% 57.8%)",
+        "hsl(262.1 83.3% 87.8%)",
+        "hsl(262.1 83.3% 37.8%)",
+      ]}
       backgroundFill="white"
       blur={7}
       waveOpacity={0.4}
@@ -18,7 +22,7 @@ export default async function Page() {
             Budgeteer
           </TypographyH1>
           <TypographyP className="text-lg font-normal md:text-xl">
-            Because money doesn&apos;t grow on trees.
+            Because a penny saved is a penny earned.
           </TypographyP>
         </div>
         <Link href={ROUTES.dashboard}>
