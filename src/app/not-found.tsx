@@ -1,25 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { TypographyH1, TypographyP } from "@/components/ui/typography";
-import { WavyBackground } from "@/components/wavy-bg";
+import { Hero } from "@/components/hero";
 import { ROUTES } from "@/lib/routes";
-import Link from "next/link";
 
-export default async function Page() {
+export default function Page() {
   return (
-    <WavyBackground>
-      <div className="flex max-w-lg flex-col items-center gap-8 text-center">
-        <div className="flex flex-col gap-2">
-          <TypographyH1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
-            404
-          </TypographyH1>
-          <TypographyP className="text-lg font-normal md:text-xl">
-            It looks like you&apos;re lost.
-          </TypographyP>
-        </div>
-        <Link href={ROUTES.dashboard}>
-          <Button>Go To Your Dashboard</Button>
-        </Link>
-      </div>
-    </WavyBackground>
+    <Hero
+      description="It looks like you're lost."
+      link={{ href: ROUTES.dashboard, label: "Go to Dashboard" }}
+      title="404 Not Found"
+    />
   );
 }

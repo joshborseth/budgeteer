@@ -1,4 +1,5 @@
 import { ROUTES } from "@/lib/routes";
+import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -32,7 +33,7 @@ const items = [
   },
 ];
 
-export const RecentExpenses = () => {
+export const RecentExpenses = async () => {
   return (
     <Card className="w-full">
       <CardHeader>
@@ -42,10 +43,10 @@ export const RecentExpenses = () => {
         <ScrollArea className="h-80 pr-5">
           <ul className="flex flex-col gap-4 py-2">
             {[...items, ...items, ...items, ...items, ...items, ...items].map(
-              (item) => (
+              (item, i) => (
                 <li
                   className="flex w-full list-disc items-center justify-between"
-                  key={item.id}
+                  key={i}
                 >
                   <div className="flex items-center justify-center gap-4">
                     <div>
@@ -66,8 +67,8 @@ export const RecentExpenses = () => {
       </CardContent>
       <CardFooter>
         <Link className="w-full" href={ROUTES.track}>
-          <Button className="w-full" size="sm" variant="secondary">
-            View All
+          <Button className="flex w-full gap-1" size="sm" variant="secondary">
+            View All <ArrowUpRightIcon className="h-4 w-4" />
           </Button>
         </Link>
       </CardFooter>

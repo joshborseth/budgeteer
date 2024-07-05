@@ -9,20 +9,20 @@ import {
 } from "./ui/card";
 import { Progress } from "./ui/progress";
 
-export const MonthlySpendRemaing = () => {
+export const WeeklySpendRemaing = () => {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardDescription>This Month</CardDescription>
+        <CardDescription>This Week</CardDescription>
         <CardTitle className="text-4xl">
-          <NumberScramble value={2090} />
+          <NumberScramble value={509} />
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-xs text-muted-foreground">$2910 remaining</div>
+        <div className="text-xs text-muted-foreground">$400 remaining</div>
       </CardContent>
       <CardFooter>
-        <Progress value={56} aria-label="2,090 spent" />
+        <Progress value={56} aria-label="$509 spent" />
       </CardFooter>
     </Card>
   );

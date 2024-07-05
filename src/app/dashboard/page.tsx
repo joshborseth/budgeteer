@@ -10,7 +10,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { WeeklySpend } from "@/components/WeeklySpend";
+import { WeeklySpendRemaing } from "@/components/WeeklySpendRemaining";
 import { ROUTES } from "@/lib/routes";
+import { NotebookPenIcon } from "lucide-react";
 import Link from "next/link";
 export default async function Page() {
   return (
@@ -27,13 +29,16 @@ export default async function Page() {
             </CardHeader>
             <CardFooter>
               <Link href={ROUTES.track}>
-                <Button>Start Tracking</Button>
+                <Button className="flex gap-2">
+                  Start Tracking <NotebookPenIcon className="h-4 w-4" />
+                </Button>
               </Link>
             </CardFooter>
           </Card>
           <MonthlySpend />
           <WeeklySpend />
           <MonthlySpendRemaing />
+          <WeeklySpendRemaing />
         </div>
       </div>
       <RecentExpenses />
