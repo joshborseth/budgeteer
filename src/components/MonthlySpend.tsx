@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "./ui/badge";
+import { TypographyP } from "./ui/typography";
 export const MonthlySpend = () => {
   return (
     <Card>
@@ -15,7 +16,7 @@ export const MonthlySpend = () => {
       </CardHeader>
       <CardContent>
         <Badge variant="success">
-          <p className="text-xs">-25% from last month</p>
+          <TypographyP className="text-xs">-25% from last month</TypographyP>
         </Badge>
       </CardContent>
     </Card>

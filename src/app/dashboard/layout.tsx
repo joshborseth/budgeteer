@@ -1,31 +1,35 @@
+import { DesktopNavigationLink } from "@/components/navigation/DesktopNavigationLink";
+import { MobileNavigationLink } from "@/components/navigation/MobileNavigationLink";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { LayoutDashboardIcon, MenuIcon } from "lucide-react";
-import Link from "next/link";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ROUTES } from "@/lib/routes";
+import { DollarSignIcon, LayoutDashboardIcon, MenuIcon } from "lucide-react";
+
+const ICON_CLASS_NAME = "h-5 w-5";
+
+const LINKS = [
+  {
+    label: "Dashboard",
+    href: ROUTES.dashboard,
+    icon: <LayoutDashboardIcon className={ICON_CLASS_NAME} />,
+  },
+  {
+    label: "Track Expenses",
+    href: ROUTES.track,
+    icon: <DollarSignIcon className={ICON_CLASS_NAME} />,
+  },
+];
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
           <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/dashboard"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <LayoutDashboardIcon className="h-5 w-5" />
-                  <span className="sr-only">Dashboard</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Dashboard</TooltipContent>
-            </Tooltip>
+            {LINKS.map((props) => (
+              <DesktopNavigationLink {...props} key={props.label} />
+            ))}
           </TooltipProvider>
         </nav>
       </aside>
@@ -41,14 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <SheetContent side="left" className="sm:max-w-xs">
               <nav className="grid gap-6 text-lg font-medium">
                 <div className="h-5" />
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  prefetch={false}
-                >
-                  <LayoutDashboardIcon className="h-5 w-5" />
-                  Dashboard
-                </Link>
+                {LINKS.map((props) => (
+                  <MobileNavigationLink {...props} key={props.label} />
+                ))}
               </nav>
             </SheetContent>
           </Sheet>

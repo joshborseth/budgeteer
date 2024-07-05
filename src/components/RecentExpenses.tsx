@@ -1,3 +1,5 @@
+import { ROUTES } from "@/lib/routes";
+import Link from "next/link";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -47,10 +49,12 @@ export const RecentExpenses = () => {
                 >
                   <div className="flex items-center justify-center gap-4">
                     <div>
-                      <p className="text-sm font-medium">{item.name}</p>
-                      <p className="text-xs text-muted-foreground">
+                      <TypographyP className="text-sm font-medium">
+                        {item.name}
+                      </TypographyP>
+                      <TypographyP className="text-xs text-muted-foreground">
                         {item.description}
-                      </p>
+                      </TypographyP>
                     </div>
                   </div>
                   <TypographyP>${item.price}</TypographyP>
@@ -61,9 +65,11 @@ export const RecentExpenses = () => {
         </ScrollArea>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" size="sm" variant="secondary">
-          View All
-        </Button>
+        <Link className="w-full" href={ROUTES.track}>
+          <Button className="w-full" size="sm" variant="secondary">
+            View All
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

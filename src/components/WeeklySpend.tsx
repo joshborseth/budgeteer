@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
+import { TypographyP } from "./ui/typography";
 
 export const WeeklySpend = () => {
   return (
@@ -16,7 +17,7 @@ export const WeeklySpend = () => {
       </CardHeader>
       <CardContent>
         <Badge variant="destructive">
-          <p className="text-xs">+25% from last week</p>
+          <TypographyP className="text-xs">+25% from last week</TypographyP>
         </Badge>
       </CardContent>
     </Card>

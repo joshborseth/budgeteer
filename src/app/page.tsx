@@ -1,26 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyP } from "@/components/ui/typography";
 import { WavyBackground } from "@/components/ui/wavy-bg";
+import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 
 export default async function Page() {
   return (
     <WavyBackground
-      colors={["#E944F0", "#F03F3F", "#F550CD", "#9531EF"]}
+      colors={["hsl(262.1 83.3% 57.8%)"]}
       backgroundFill="white"
       blur={7}
       waveOpacity={0.4}
     >
       <div className="flex max-w-lg flex-col items-center gap-8 text-center">
-        <div>
+        <div className="flex flex-col gap-2">
           <TypographyH1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
-            PiggyPal
+            Budgeteer
           </TypographyH1>
           <TypographyP className="text-lg font-normal md:text-xl">
-            Track your savings so you can buy cool things.
+            Because money doesn&apos;t grow on trees.
           </TypographyP>
         </div>
-        <Link href={"/dashboard"}>
+        <Link href={ROUTES.dashboard}>
           <Button>Get Started</Button>
         </Link>
       </div>
