@@ -6,16 +6,7 @@ import Link from "next/link";
 
 export default async function Page() {
   return (
-    <WavyBackground
-      colors={[
-        "hsl(262.1 83.3% 57.8%)",
-        "hsl(262.1 83.3% 87.8%)",
-        "hsl(262.1 83.3% 37.8%)",
-      ]}
-      backgroundFill="white"
-      blur={7}
-      waveOpacity={0.4}
-    >
+    <WavyBackground>
       <div className="flex max-w-lg flex-col items-center gap-8 text-center">
         <div className="flex flex-col gap-2">
           <TypographyH1 className="text-2xl font-bold md:text-4xl lg:text-7xl">

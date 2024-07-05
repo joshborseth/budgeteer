@@ -9,18 +9,16 @@ export const WavyBackground = ({
   children,
   className,
   containerClassName,
-  colors,
   waveWidth,
   backgroundFill,
-  blur = 10,
+  blur = 7,
   speed = "fast",
-  waveOpacity = 0.5,
+  waveOpacity = 0.4,
   ...props
 }: {
   children?: any;
   className?: string;
   containerClassName?: string;
-  colors?: string[];
   waveWidth?: number;
   backgroundFill?: string;
   blur?: number;
@@ -63,12 +61,10 @@ export const WavyBackground = ({
     render();
   };
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
+  const waveColors = [
+    "hsl(262.1 83.3% 57.8%)",
+    "hsl(262.1 83.3% 87.8%)",
+    "hsl(262.1 83.3% 37.8%)",
   ];
   const drawWave = (n: number) => {
     nt += getSpeed();
@@ -87,7 +83,7 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
+    ctx.fillStyle = backgroundFill || "white";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
     drawWave(5);
