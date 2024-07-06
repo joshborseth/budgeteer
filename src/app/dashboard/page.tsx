@@ -1,5 +1,5 @@
-import { MonthlySpend } from "@/components/MonthlySpend";
-import { MonthlySpendRemaing } from "@/components/MonthlySpendRemaing";
+import { CurrentExpenditureCard } from "@/components/CurrentExpenditureCard";
+import { OverUnderCard } from "@/components/OverUnderCard";
 import { RecentExpenses } from "@/components/RecentExpenses";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { WeeklySpend } from "@/components/WeeklySpend";
-import { WeeklySpendRemaing } from "@/components/WeeklySpendRemaining";
 import { ROUTES } from "@/lib/routes";
 import { NotebookPenIcon } from "lucide-react";
 import Link from "next/link";
@@ -35,10 +33,17 @@ export default async function Page() {
               </Link>
             </CardFooter>
           </Card>
-          <MonthlySpend />
-          <WeeklySpend />
-          <MonthlySpendRemaing />
-          <WeeklySpendRemaing />
+          <OverUnderCard
+            type={{ timeSpan: "monthly", overUnder: "under" }}
+            moneySpent={4400}
+            overUnder={600}
+          />
+          <CurrentExpenditureCard
+            type="monthly"
+            progressValue={56}
+            moneyRemaining={2000}
+            moneySpent={3000}
+          />
         </div>
       </div>
       <RecentExpenses />

@@ -1,6 +1,7 @@
 import { DesktopNavigationLink } from "@/components/navigation/DesktopNavigationLink";
 import { MobileNavigationLink } from "@/components/navigation/MobileNavigationLink";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ROUTES } from "@/lib/routes";
@@ -39,6 +40,7 @@ export default async function Layout({
             height={75}
             className="h-8 w-8 rounded-lg"
           />
+          <Separator />
           <TooltipProvider>
             {LINKS.map((props) => (
               <DesktopNavigationLink {...props} key={props.label} />
