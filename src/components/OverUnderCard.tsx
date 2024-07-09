@@ -10,37 +10,32 @@ import { Badge } from "./ui/badge";
 import { TypographyP } from "./ui/typography";
 export const OverUnderCard = ({
   moneySpent,
-  type,
   overUnder,
+  overUnderAmount,
 }: {
   moneySpent: number;
-  type: {
-    timeSpan: "monthly" | "weekly";
-    overUnder: "over" | "under";
-  };
-  overUnder: number;
+  overUnder: "over" | "under";
+  overUnderAmount: number;
 }) => {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardDescription>
-          Last {type.timeSpan === "monthly" ? "Month" : "Week"}
-        </CardDescription>
+        <CardDescription>Last Month</CardDescription>
         <CardTitle className="text-4xl">
           <NumberScramble value={moneySpent} />
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {type.overUnder === "over" ? (
+        {overUnder === "over" ? (
           <Badge variant="destructive">
             <TypographyP className="text-xs">
-              ${overUnder} over budget
+              ${overUnderAmount} over budget
             </TypographyP>
           </Badge>
         ) : (
           <Badge variant="success">
             <TypographyP className="text-xs">
-              ${overUnder} under budget
+              ${overUnderAmount} under budget
             </TypographyP>
           </Badge>
         )}

@@ -40,7 +40,7 @@ export const RecentExpenses = async () => {
         <CardTitle>Recent Expenses</CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-80 pr-5">
+        <ScrollArea className="h-64 pr-5">
           <ul className="flex flex-col gap-4 py-2">
             {[...items, ...items, ...items, ...items, ...items, ...items].map(
               (item, i) => (

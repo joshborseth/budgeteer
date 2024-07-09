@@ -1,4 +1,4 @@
-import { CurrentExpenditureCard } from "@/components/CurrentExpenditureCard";
+import { BarChartCard } from "@/components/charts/BarChartCard";
 import { OverUnderCard } from "@/components/OverUnderCard";
 import { RecentExpenses } from "@/components/RecentExpenses";
 import { Button } from "@/components/ui/button";
@@ -34,16 +34,14 @@ export default async function Page() {
             </CardFooter>
           </Card>
           <OverUnderCard
-            type={{ timeSpan: "monthly", overUnder: "under" }}
             moneySpent={4400}
-            overUnder={600}
+            overUnder="over"
+            overUnderAmount={100}
           />
-          <CurrentExpenditureCard
-            type="monthly"
-            progressValue={56}
-            moneyRemaining={2000}
-            moneySpent={3000}
-          />
+
+          <div className="row-span-2">
+            <BarChartCard />
+          </div>
         </div>
       </div>
       <RecentExpenses />
