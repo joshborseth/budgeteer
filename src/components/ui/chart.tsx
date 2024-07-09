@@ -106,6 +106,7 @@ const ChartTooltipContent = React.forwardRef<
     React.ComponentProps<"div"> & {
       hideLabel?: boolean;
       hideIndicator?: boolean;
+      showAsDollars?: boolean;
       indicator?: "line" | "dot" | "dashed";
       nameKey?: string;
       labelKey?: string;
@@ -119,6 +120,7 @@ const ChartTooltipContent = React.forwardRef<
       indicator = "dot",
       hideLabel = false,
       hideIndicator = false,
+      showAsDollars = false,
       label,
       labelFormatter,
       labelClassName,
@@ -242,6 +244,7 @@ const ChartTooltipContent = React.forwardRef<
                       </div>
                       {item.value && (
                         <span className="font-mono font-medium tabular-nums text-foreground">
+                          {showAsDollars && "$"}
                           {item.value.toLocaleString()}
                         </span>
                       )}

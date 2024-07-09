@@ -19,7 +19,7 @@ export default async function Page() {
         <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
           <Card className="sm:col-span-2">
             <CardHeader className="pb-3">
-              <CardTitle>Your Spending</CardTitle>
+              <CardTitle>Dashboard</CardTitle>
               <CardDescription className="max-w-lg text-balance leading-relaxed">
                 Introducing Our Dynamic Dashboard for Seamless Management and
                 Insightful Analysis.
@@ -39,7 +39,7 @@ export default async function Page() {
             overUnderAmount={100}
           />
 
-          <div className="row-span-2">
+          <div className="row-span-2 xl:col-span-2">
             <BarChartCard />
           </div>
         </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -25,23 +24,20 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", amount: 186 },
+  { month: "February", amount: 305 },
+  { month: "March", amount: 237 },
+  { month: "April", amount: 73 },
+  { month: "May", amount: 209 },
+  { month: "June", amount: 214 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  amount: {
+    label: "Amount",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
-  },
+
   label: {
     color: "hsl(var(--background))",
   },
@@ -51,7 +47,7 @@ export function BarChartCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - IDK YET</CardTitle>
+        <CardTitle>Your Spending</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
@@ -61,7 +57,7 @@ export function BarChartCard() {
             data={chartData}
             layout="vertical"
             margin={{
-              right: 16,
+              right: 32,
             }}
           >
             <CartesianGrid horizontal={false} />
@@ -74,15 +70,15 @@ export function BarChartCard() {
               tickFormatter={(value: string) => value.slice(0, 3)}
               hide
             />
-            <XAxis dataKey="desktop" type="number" hide />
+            <XAxis dataKey="amount" type="number" hide />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              content={<ChartTooltipContent showAsDollars indicator="line" />}
             />
             <Bar
-              dataKey="desktop"
+              dataKey="amount"
               layout="vertical"
-              fill="var(--color-desktop)"
+              fill="var(--color-amount)"
               radius={4}
             >
               <LabelList
@@ -93,10 +89,11 @@ export function BarChartCard() {
                 fontSize={12}
               />
               <LabelList
-                dataKey="desktop"
+                dataKey="amount"
                 position="right"
                 offset={8}
                 className="fill-foreground"
+                formatter={(value: number) => `$${value.toLocaleString()}`}
                 fontSize={12}
               />
             </Bar>
@@ -104,11 +101,8 @@ export function BarChartCard() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing spending within the last 6 months
         </div>
       </CardFooter>
     </Card>
