@@ -1,5 +1,4 @@
-import { BarChartCard } from "@/components/charts/BarChartCard";
-import { OverUnderCard } from "@/components/OverUnderCard";
+import { LastMonth } from "@/components/LastMonth";
 import { RecentExpenses } from "@/components/RecentExpenses";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,18 +32,18 @@ export default async function Page() {
               </Link>
             </CardFooter>
           </Card>
-          <OverUnderCard
-            moneySpent={4400}
+          <LastMonth
+            type="spending"
+            amount={4400}
             overUnder="over"
             overUnderAmount={100}
           />
-
-          <div className="row-span-2 xl:col-span-2">
-            <BarChartCard />
-          </div>
+          <LastMonth type="income" amount={6000} />
         </div>
       </div>
       <RecentExpenses />
     </main>
   );
 }
+
+// code written and directed by @jedborseth on tiktok (live on weekdays @ 9pm)
