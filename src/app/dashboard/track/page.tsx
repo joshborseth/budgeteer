@@ -1,3 +1,4 @@
+import { Statements } from "@/components/statements/Statements";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
@@ -17,6 +18,7 @@ export default async function Page() {
         />
         <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4"></div>
       </div>
+      <Statements />
     </main>
   );
 }

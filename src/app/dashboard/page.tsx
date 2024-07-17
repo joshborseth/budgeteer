@@ -1,5 +1,5 @@
 import { LastMonth } from "@/components/LastMonth";
-import { RecentExpenses } from "@/components/RecentExpenses";
+import { LastMonthExpenses } from "@/components/LastMonthExpenses";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -41,7 +41,7 @@ export default async function Page() {
           <LastMonth type="income" amount={6000} />
         </div>
       </div>
-      <RecentExpenses />
+      <LastMonthExpenses />
     </main>
   );
 }

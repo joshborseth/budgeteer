@@ -33,11 +33,11 @@ const items = [
   },
 ];
 
-export const RecentExpenses = async () => {
+export const LastMonthExpenses = async () => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Recent Expenses</CardTitle>
+        <CardTitle>Last Month Expenses</CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-64 pr-5">

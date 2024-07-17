@@ -8,6 +8,7 @@ import { ROUTES } from "@/lib/routes";
 import { SignOutButton } from "@clerk/nextjs";
 import { DollarSignIcon, LayoutDashboardIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ICON_CLASS_NAME = "h-5 w-5";
 
@@ -33,13 +34,16 @@ export default async function Layout({
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-          <Image
-            src="/logo.png"
-            alt="Budgeteer Logo"
-            width={75}
-            height={75}
-            className="h-8 w-8 rounded-lg"
-          />
+          <Link href={ROUTES.home}>
+            <Image
+              src="/logo.png"
+              alt="Budgeteer Logo"
+              width={75}
+              height={75}
+              className="h-8 w-8 rounded-lg"
+            />
+          </Link>
+
           <Separator />
           <TooltipProvider>
             {LINKS.map((props) => (
