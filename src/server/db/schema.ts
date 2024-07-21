@@ -17,7 +17,7 @@ export const transaction = sqliteTable("transaction", {
 export const statement = sqliteTable("statement", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   label: text("label", { length: 256 }).notNull(),
-  s3Url: text("s3Url", { length: 256 }),
+  url: text("url", { length: 256 }),
   createdAt: text("createdAt")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
@@ -25,4 +25,5 @@ export const statement = sqliteTable("statement", {
     .default(sql`CURRENT_TIMESTAMP`)
     .$onUpdateFn(() => sql`CURRENT_TIMESTAMP`),
   userId: text("userId", { length: 256 }).notNull(),
+  processed: integer("processed", { mode: "boolean" }).default(false),
 });

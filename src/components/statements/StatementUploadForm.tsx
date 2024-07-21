@@ -1,34 +1,22 @@
 "use client";
-import { UploadIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { UploadButton } from "@/lib/uploadthing";
+import { toast } from "sonner";
 
-export const StatementUploadForm = ({ url }: { url: string }) => {
-  console.log(url);
+export const StatementUploadForm = () => {
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-
-        //eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const file = (e.target as HTMLFormElement).file.files?.[0] as File;
-        console.log(file);
-
-        const image = await fetch(url, {
-          body: file,
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
-            "Content-Disposition": `attachment; filename="${file.name}"`,
-          },
-        });
-
-        window.location.href = image.url.split("?")[0]!;
+    <UploadButton
+      endpoint="uploadStatement"
+      appearance={{
+        button:
+          "bg-primary focus-within:ring-primary ut-uploading:bg-primary ut-readying:bg-primary ut-ready:bg-primary after:bg-primary w-full",
+        container: "w-full",
       }}
-    >
-      <input name="file" type="file" accept="text/csv" />
-      <Button className="flex w-full gap-2" size="sm" variant="secondary">
-        Upload <UploadIcon className="h-4 w-4" />
-      </Button>
-    </form>
+      onClientUploadComplete={() => {
+        toast.success("File Uploaded");
+      }}
+      onUploadError={(error: Error) => {
+        toast.error("Error Uploading File", { description: error.message });
+      }}
+    />
   );
 };

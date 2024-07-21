@@ -1,6 +1,3 @@
-import { env } from "@/env";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import {
@@ -33,20 +30,6 @@ const items = [
 ];
 
 export const Statements = async () => {
-  const command = new PutObjectCommand({
-    Key: "idk",
-    Bucket: env.S3_BUCKET,
-  });
-  const url = await getSignedUrl(
-    new S3Client({
-      region: env.S3_REGION,
-      credentials: {
-        accessKeyId: env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
-      },
-    }),
-    command,
-  );
   return (
     <Card className="w-full">
       <CardHeader>
@@ -78,7 +61,7 @@ export const Statements = async () => {
         </ScrollArea>
       </CardContent>
       <CardFooter>
-        <StatementUploadForm url={url} />
+        <StatementUploadForm />
       </CardFooter>
     </Card>
   );
