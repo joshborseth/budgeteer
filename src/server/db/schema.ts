@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { blob, int, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const transaction = sqliteTable("transaction", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
@@ -10,17 +10,19 @@ export const transaction = sqliteTable("transaction", {
   updatedAt: text("updatedAt")
     .default(sql`CURRENT_TIMESTAMP`)
     .$onUpdateFn(() => sql`CURRENT_TIMESTAMP`),
-  type: text("type", { enum: ["expense", "income"] }),
+  transactionDate: text("transactionDate").notNull(),
+  expense: int("expense").notNull(),
+  income: int("income").notNull(),
   userId: text("userId", { length: 256 }).notNull(),
 });
 
 export const statement = sqliteTable("statement", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   label: text("label", { length: 256 }).notNull(),
-  url: text("url", { length: 256 }),
   createdAt: text("createdAt")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
+  csvData: blob("csvData", { mode: "json" }).$type<string[][]>().notNull(),
   updatedAt: text("updatedAt")
     .default(sql`CURRENT_TIMESTAMP`)
     .$onUpdateFn(() => sql`CURRENT_TIMESTAMP`),
