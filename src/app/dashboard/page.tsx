@@ -45,5 +45,3 @@ export default async function Page() {
     </main>
   );
 }
-
-// code written and directed by @jedborseth on tiktok (live on weekdays @ 9pm)
