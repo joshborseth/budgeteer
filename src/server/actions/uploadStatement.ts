@@ -30,6 +30,8 @@ export const uploadStatementAction = createServerAction()
     });
 
     await map(data, async (row) => {
+      // skip empty rows
+      if (row.every((c) => !c)) return;
       //based on TD Canada csv format
       const [unformattedTransactionDate, label, expense, income] = row;
 
