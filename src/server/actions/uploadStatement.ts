@@ -1,27 +1,65 @@
 "use server";
 import { ROUTES } from "@/lib/routes";
+import { DateTime } from "luxon";
 import { revalidatePath } from "next/cache";
 import { parse } from "papaparse";
+import { map } from "radash";
 import "server-only";
 import { z } from "zod";
-import { statement } from "../db/schema";
+import { createServerAction } from "zsa";
+import { statement, transaction } from "../db/schema";
 import { getBudgeteerData } from "../lib/getBudgeteerData";
-import { actionClient } from "../lib/safe-action";
 
-export const uploadStatementAction = actionClient
-  .schema(z.object({ csvData: z.instanceof(File) }))
-  .action(async ({ parsedInput: { csvData } }) => {
+export const uploadStatementAction = createServerAction()
+  .input(
+    z.object({
+      csvData: z.string(),
+      fileName: z.string(),
+    }),
+  )
+  .handler(async ({ input: { csvData, fileName } }) => {
     const { userId, db } = await getBudgeteerData();
 
-    const text = await csvData.text();
-
-    const { data } = parse<string[]>(text);
+    const { data } = parse<string[]>(csvData);
 
     await db.insert(statement).values({
-      label: csvData.name,
+      label: fileName,
       userId,
       processed: false,
       csvData: data,
     });
+
+    await map(data, async (row) => {
+      //based on TD Canada csv format
+      const [unformattedTransactionDate, label, expense, income] = row;
+
+      if (!unformattedTransactionDate) {
+        throw new Error("Transaction date is required");
+      }
+
+      const transactionDate = DateTime.fromFormat(
+        unformattedTransactionDate,
+        "mm/dd/yyyy",
+      ).toFormat("yyyy-mm-dd");
+
+      if (!transactionDate) {
+        throw new Error("Invalid transaction date");
+      }
+
+      if (!label) {
+        throw new Error("Label is required");
+      }
+      if (!expense && !income) {
+        throw new Error("Transaction must have either an expense or an income");
+      }
+      await db.insert(transaction).values({
+        userId,
+        expense: Number(expense),
+        income: Number(income),
+        transactionDate,
+        label,
+      });
+    });
+
     revalidatePath(ROUTES.track);
   });

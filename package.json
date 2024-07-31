@@ -27,6 +27,7 @@
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
     "@t3-oss/env-nextjs": "^0.10.1",
+    "@tanstack/react-query": "^5.51.15",
     "@tanstack/react-table": "^8.19.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -37,7 +38,6 @@
     "lucide-react": "^0.400.0",
     "luxon": "^3.4.4",
     "next": "^14.2.1",
-    "next-safe-action": "^7.4.3",
     "next-themes": "^0.3.0",
     "papaparse": "^5.4.1",
     "radash": "^12.1.0",
@@ -50,7 +50,10 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zsa": "^0.5.1",
+    "zsa-react": "^0.2.2",
+    "zsa-react-query": "^0.2.1"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.2",

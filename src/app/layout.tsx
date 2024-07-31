@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
+import { ReactQueryProvider } from "@/lib/providers/react-query";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { GeistSans } from "geist/font/sans";
@@ -18,8 +19,10 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
-          {children}
-          <Toaster />
+          <ReactQueryProvider>
+            {children}
+            <Toaster />
+          </ReactQueryProvider>
         </body>
       </html>
     </ClerkProvider>
