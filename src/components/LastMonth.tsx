@@ -27,7 +27,7 @@ export const LastMonth = (
         <CardDescription>
           Last Month {props.type === "income" ? "Income" : "Spending"}
         </CardDescription>
-        <CardTitle className="text-4xl">
+        <CardTitle className="text-3xl">
           <NumberScramble value={props.amount} />
         </CardTitle>
       </CardHeader>

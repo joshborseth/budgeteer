@@ -25,6 +25,7 @@ export const StatementUploadForm = () => {
       <input
         type="file"
         ref={inputRef}
+        accept=".csv"
         onChange={async (e) => {
           const file = e.target.files?.[0];
           if (!file) return;
