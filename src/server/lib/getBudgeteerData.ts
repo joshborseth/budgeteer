@@ -3,7 +3,8 @@ import "server-only";
 import { db } from "../db";
 
 export const getBudgeteerData = async () => {
-  const { userId } = auth();
+  const { userId } = await auth();
+
   if (!userId) throw new Error("User not found");
 
   return {
