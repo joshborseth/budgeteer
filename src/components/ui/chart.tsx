@@ -169,7 +169,7 @@ const ChartTooltipContent = React.forwardRef<
       labelKey,
     ]);
 
-    if (!active ?? !payload?.length) {
+    if (!active || !payload?.length) {
       return null;
     }
 
@@ -329,12 +329,11 @@ function getPayloadConfigFromPayload(
   payload: unknown,
   key: string,
 ) {
-  if (typeof payload !== "object" ?? payload === null) {
+  if (typeof payload !== "object" || payload === null) {
     return undefined;
   }
 
   const payloadPayload =
-    // @ts-expect-error - because i trust my guy shad
     "payload" in payload &&
     typeof payload.payload === "object" &&
     payload.payload !== null
@@ -344,12 +343,9 @@ function getPayloadConfigFromPayload(
   let configLabelKey: string = key;
 
   if (
-    // @ts-expect-error - because i trust my guy shad
     key in payload &&
-    // @ts-expect-error - because i trust my guy shad
     typeof payload[key as keyof typeof payload] === "string"
   ) {
-    // @ts-expect-error - because i trust my guy shad
     configLabelKey = payload[key as keyof typeof payload] as string;
   } else if (
     payloadPayload &&
