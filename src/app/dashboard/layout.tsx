@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ROUTES } from "@/lib/routes";
-import { SignOutButton } from "@clerk/nextjs";
 import { DollarSignIcon, LayoutDashboardIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,9 +71,7 @@ export default async function Layout({
           </Sheet>
           <div className="flex h-10 w-full items-center justify-between">
             <div className="ml-auto flex flex-1 justify-end md:grow-0">
-              <SignOutButton>
-                <Button variant="outline">Sign Out</Button>
-              </SignOutButton>
+              <Button variant="outline">Sign Out</Button>
             </div>
           </div>
         </header>

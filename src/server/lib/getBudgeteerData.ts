@@ -1,14 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
 import "server-only";
 import { db } from "../db";
+import { getCurrentSession } from "../auth/session";
+import { redirect } from "next/navigation";
 
 export const getBudgeteerData = async () => {
-  const { userId } = await auth();
-
-  if (!userId) throw new Error("User not found");
-
+  const { user } = await getCurrentSession();
+  if (!user) return redirect("/login");
   return {
-    userId,
     db,
+    user,
   };
 };

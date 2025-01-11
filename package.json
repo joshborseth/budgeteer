@@ -14,8 +14,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.9.6",
     "@libsql/client": "^0.14.0",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-dropdown-menu": "^2.1.4",
@@ -29,6 +30,7 @@
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tanstack/react-query": "^5.62.16",
     "@tanstack/react-table": "^8.20.6",
+    "arctic": "^3.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.30.10",

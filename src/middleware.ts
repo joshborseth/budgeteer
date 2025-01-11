@@ -1,14 +1,45 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
-export default clerkMiddleware(async (auth, req) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  if (isProtectedRoute(req)) await auth.protect();
-});
-export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-  ],
-};
+import { type NextRequest, NextResponse } from "next/server";
+import { SESSION_COOKIE_NAME } from "./server/constants";
+
+export const config = { matcher: ["/dashboard/(.*)"] };
+
+export async function middleware(request: NextRequest): Promise<NextResponse> {
+  if (request.method === "GET") {
+    const response = NextResponse.next();
+    const token = request.cookies.get(SESSION_COOKIE_NAME)?.value ?? null;
+    if (token !== null) {
+      // Only extend cookie expiration on GET requests since we can be sure
+      // a new session wasn't set when handling the request.
+      response.cookies.set(SESSION_COOKIE_NAME, token, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 30,
+        sameSite: "lax",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      });
+    }
+    return response;
+  }
+  const originHeader = request.headers.get("Origin");
+  // NOTE: You may need to use `X-Forwarded-Host` instead
+  const hostHeader = request.headers.get("Host");
+  if (originHeader === null || hostHeader === null) {
+    return new NextResponse(null, {
+      status: 403,
+    });
+  }
+  let origin: URL;
+  try {
+    origin = new URL(originHeader);
+  } catch {
+    return new NextResponse(null, {
+      status: 403,
+    });
+  }
+  if (origin.host !== hostHeader) {
+    return new NextResponse(null, {
+      status: 403,
+    });
+  }
+  return NextResponse.next();
+}

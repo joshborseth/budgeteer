@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { ReactQueryProvider } from "@/lib/providers/react-query";
 import "@/styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { GeistSans } from "geist/font/sans";
 
 export const metadata = {
@@ -16,15 +15,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={`${GeistSans.variable}`}>
-        <body>
-          <ReactQueryProvider>
-            {children}
-            <Toaster />
-          </ReactQueryProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" className={`${GeistSans.variable}`}>
+      <body>
+        <ReactQueryProvider>
+          {children}
+          <Toaster />
+        </ReactQueryProvider>
+      </body>
+    </html>
   );
 }

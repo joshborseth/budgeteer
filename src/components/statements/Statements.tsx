@@ -18,7 +18,7 @@ import { StatementUploadForm } from "./StatementUploadForm";
 export const Statements = async () => {
   const data = await getBudgeteerData();
   const statements = await db.query.statement.findMany({
-    where: eq(statement.userId, data.userId),
+    where: eq(statement.userId, data.user.id),
   });
   return (
     <Card className="w-full">
