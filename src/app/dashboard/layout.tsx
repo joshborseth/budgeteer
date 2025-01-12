@@ -5,9 +5,11 @@ import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ROUTES } from "@/lib/routes";
+import { getCurrentSession } from "@/server/auth/session";
 import { DollarSignIcon, LayoutDashboardIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const ICON_CLASS_NAME = "h-5 w-5";
 
@@ -29,6 +31,8 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { user } = await getCurrentSession();
+  if (!user) return redirect("/login");
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
