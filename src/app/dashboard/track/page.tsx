@@ -17,8 +17,9 @@ export default async function Page() {
           ]}
         />
       </div>
-
-      <Statements />
+      <div className="max-h-fit">
+        <Statements />
+      </div>
     </>
   );
 }
