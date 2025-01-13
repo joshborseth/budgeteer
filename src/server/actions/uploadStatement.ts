@@ -18,13 +18,13 @@ export const uploadStatementAction = createServerAction()
     }),
   )
   .handler(async ({ input: { csvData, fileName } }) => {
-    const { userId, db } = await getBudgeteerData();
+    const { user, db } = await getBudgeteerData();
 
     const { data } = parse<string[]>(csvData);
 
     await db.insert(statement).values({
       label: fileName,
-      userId,
+      userId: user.id,
       processed: false,
       csvData: data,
     });
@@ -55,7 +55,7 @@ export const uploadStatementAction = createServerAction()
         throw new Error("Transaction must have either an expense or an income");
       }
       await db.insert(transaction).values({
-        userId,
+        userId: user.id,
         expense: Number(expense),
         income: Number(income),
         transactionDate,

@@ -1,24 +1,38 @@
 import { Statements } from "@/components/statements/Statements";
+import { getCurrentSession } from "@/server/auth/session";
+import { db } from "@/server/db";
+import { redirect } from "next/navigation";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
 export default async function Page() {
+  const { session } = await getCurrentSession();
+  if (!session) {
+    return redirect("/login");
+  }
+  const transactions = await db.query.transaction.findMany({
+    where: (t, { eq }) => eq(t.userId, session.userId),
+  });
   return (
-    <main className="grid h-full flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
-      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+    <>
+      <div className="col-span-2">
         <DataTable
           columns={columns}
-          data={[
-            {
-              name: "Item 1",
-              price: 100,
-              date: "2023-01-01",
-            },
-          ]}
+          data={transactions.map((t) => {
+            const formattedPrice = t.income
+              ? `+ $${t.income}`
+              : `- $${t.expense}`;
+            return {
+              price: formattedPrice,
+              name: t.label,
+              date: new Date(t.transactionDate).toLocaleDateString(),
+            };
+          })}
         />
-        <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4"></div>
       </div>
-      <Statements />
-    </main>
+      <div className="max-h-fit">
+        <Statements />
+      </div>
+    </>
   );
 }

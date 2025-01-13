@@ -1,8 +1,8 @@
 {
-  // "editor.codeActionsOnSave": {
-  //   "source.fixAll.eslint": "always",
-  //   "source.removeUnusedImports": "always",
-  //   "source.organizeImports": "always"
-  // },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.removeUnusedImports": "always",
+    "source.organizeImports": "always"
+  },
   "typescript.tsdk": "node_modules/typescript/lib"
 }
