@@ -21,7 +21,7 @@ export const Statements = async () => {
     where: eq(statement.userId, data.user.id),
   });
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader>
         <CardTitle>Statements</CardTitle>
       </CardHeader>

@@ -35,7 +35,7 @@ const items = [
 
 export const LastMonthExpenses = async () => {
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader>
         <CardTitle>Last Month Expenses</CardTitle>
       </CardHeader>
