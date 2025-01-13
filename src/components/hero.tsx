@@ -17,12 +17,12 @@ export const Hero = ({
 }) => {
   return (
     <WavyBackground>
-      <div className="flex max-w-lg flex-col items-center gap-8 text-center">
+      <div className="flex max-w-lg flex-col items-center gap-8 overflow-hidden text-center">
         <div className="flex flex-col gap-2">
-          <TypographyH1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
+          <TypographyH1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
             {title}
           </TypographyH1>
-          <TypographyP className="text-lg font-normal md:text-xl">
+          <TypographyP className="text-xl font-normal md:text-2xl">
             {description}
           </TypographyP>
         </div>
