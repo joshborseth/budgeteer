@@ -11,8 +11,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { SidebarLink } from "./SidebarLink";
 
-const items = [
+export const items = [
   {
     title: "Dashboard",
     url: "/dashboard",
@@ -23,7 +24,7 @@ const items = [
     url: "/dashboard/track",
     icon: Inbox,
   },
-];
+] as const;
 
 export function AppSidebar() {
   return (
@@ -38,7 +39,9 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <SidebarLink
+                        item={{ title: item.title, url: item.url }}
+                      />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
