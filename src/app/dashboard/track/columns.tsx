@@ -11,6 +11,10 @@ export const columns: ColumnDef<{
   {
     accessorKey: "name",
     header: "Name",
+    cell: ({ getValue }) => {
+      const val = getValue() as string;
+      return <span>{val.slice(0, 10)}</span>;
+    },
   },
   {
     accessorKey: "price",
@@ -18,7 +22,10 @@ export const columns: ColumnDef<{
     cell: ({ getValue }) => {
       const val = getValue() as string;
       return (
-        <Badge variant={val.startsWith("+") ? "success" : "destructive"}>
+        <Badge
+          className="min-w-max text-xs"
+          variant={val.startsWith("+") ? "success" : "destructive"}
+        >
           {val}
         </Badge>
       );
