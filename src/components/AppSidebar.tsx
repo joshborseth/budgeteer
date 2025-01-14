@@ -1,4 +1,4 @@
-import { Home, Inbox } from "lucide-react";
+import { Home, NotebookPen } from "lucide-react";
 
 import {
   Sidebar,
@@ -20,9 +20,9 @@ export const items = [
     icon: Home,
   },
   {
-    title: "Track Expenses",
+    title: "Track",
     url: "/dashboard/track",
-    icon: Inbox,
+    icon: NotebookPen,
   },
 ] as const;
 
