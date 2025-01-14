@@ -1,4 +1,4 @@
-import { Main } from "@/components/Main";
+import { ContentWrapper } from "@/components/PageWrapper";
 import { Statements } from "@/components/statements/Statements";
 import {
   Breadcrumb,
@@ -41,7 +41,7 @@ export default async function Page() {
           </BreadcrumbList>
         </Breadcrumb>
       </header>
-      <Main>
+      <ContentWrapper>
         <div className="col-span-2">
           <DataTable
             columns={columns}
@@ -60,7 +60,7 @@ export default async function Page() {
         <div className="max-h-fit">
           <Statements />
         </div>
-      </Main>
+      </ContentWrapper>
     </>
   );
 }

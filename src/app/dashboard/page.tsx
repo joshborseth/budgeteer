@@ -1,6 +1,6 @@
 import { LastMonth } from "@/components/LastMonth";
 import { LastMonthExpenses } from "@/components/LastMonthExpenses";
-import { Main } from "@/components/Main";
+import { ContentWrapper } from "@/components/PageWrapper";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -35,7 +35,7 @@ export default async function Page() {
           </BreadcrumbList>
         </Breadcrumb>
       </header>
-      <Main>
+      <ContentWrapper>
         <Card>
           <CardHeader className="pb-3">
             <CardTitle>Dashboard</CardTitle>
@@ -60,7 +60,7 @@ export default async function Page() {
         />
         <LastMonth type="income" amount={6000} />
         <LastMonthExpenses />
-      </Main>
+      </ContentWrapper>
     </>
   );
 }
