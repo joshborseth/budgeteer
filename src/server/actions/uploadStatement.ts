@@ -63,5 +63,5 @@ export const uploadStatementAction = createServerAction()
       });
     });
 
-    revalidatePath(ROUTES.track);
+    revalidatePath(ROUTES.track.href);
   });

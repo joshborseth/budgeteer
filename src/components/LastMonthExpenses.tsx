@@ -66,7 +66,7 @@ export const LastMonthExpenses = async () => {
         </ScrollArea>
       </CardContent>
       <CardFooter>
-        <Link className="w-full" href={ROUTES.track}>
+        <Link className="w-full" href={ROUTES.track.href}>
           <Button className="flex w-full gap-1" size="sm" variant="secondary">
             View All <ArrowUpRightIcon className="h-4 w-4" />
           </Button>

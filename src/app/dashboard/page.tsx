@@ -17,7 +17,7 @@ import Link from "next/link";
 export default async function Page() {
   return (
     <>
-      <BreadCrumbs activePage="Dashboard" trail={[]} />
+      <BreadCrumbs activePage={ROUTES.dashboard.label} trail={[]} />
       <ContentWrapper>
         <Card>
           <CardHeader className="pb-3">
@@ -28,7 +28,7 @@ export default async function Page() {
             </CardDescription>
           </CardHeader>
           <CardFooter>
-            <Link href={ROUTES.track}>
+            <Link href={ROUTES.track.href}>
               <Button className="flex gap-2">
                 Start Tracking <NotebookPenIcon className="h-4 w-4" />
               </Button>

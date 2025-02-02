@@ -1,6 +1,7 @@
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { ContentWrapper } from "@/components/PageWrapper";
 import { Statements } from "@/components/statements/Statements";
+import { ROUTES } from "@/lib/routes";
 import { getCurrentSession } from "@/server/auth/session";
 import { db } from "@/server/db";
 import { redirect } from "next/navigation";
@@ -17,15 +18,7 @@ export default async function Page() {
   });
   return (
     <>
-      <BreadCrumbs
-        activePage="Track"
-        trail={[
-          {
-            href: "/dashboard",
-            label: "Dashboard",
-          },
-        ]}
-      />
+      <BreadCrumbs activePage="Track" trail={[ROUTES.dashboard]} />
       <ContentWrapper>
         <div className="col-span-2">
           <DataTable

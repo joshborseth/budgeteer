@@ -8,16 +8,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { type ROUTE } from "@/lib/routes";
 import React from "react";
 
 export const BreadCrumbs = ({
   trail,
   activePage,
 }: {
-  trail: Array<{
-    href: string;
-    label: string;
-  }>;
+  trail: Array<ROUTE>;
   activePage: string;
 }) => {
   return (
