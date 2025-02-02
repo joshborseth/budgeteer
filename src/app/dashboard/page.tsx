@@ -1,12 +1,7 @@
+import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { LastMonth } from "@/components/LastMonth";
 import { LastMonthExpenses } from "@/components/LastMonthExpenses";
 import { ContentWrapper } from "@/components/PageWrapper";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ROUTES } from "@/lib/routes";
 import { NotebookPenIcon } from "lucide-react";
 import Link from "next/link";
@@ -24,17 +17,7 @@ import Link from "next/link";
 export default async function Page() {
   return (
     <>
-      <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="mr-2 h-4" />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbPage>Dashboard</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </header>
+      <BreadCrumbs activePage="Dashboard" trail={[]} />
       <ContentWrapper>
         <Card>
           <CardHeader className="pb-3">

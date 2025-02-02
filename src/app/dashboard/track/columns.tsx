@@ -24,7 +24,7 @@ export const columns: ColumnDef<{
       return (
         <Badge
           className="min-w-max text-xs"
-          variant={val.startsWith("+") ? "success" : "destructive"}
+          variant={val.startsWith("+") ? "success" : "secondary"}
         >
           {val}
         </Badge>
