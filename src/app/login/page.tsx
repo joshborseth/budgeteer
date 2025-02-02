@@ -8,10 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { WavyBackground } from "@/components/wavy-bg";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <WavyBackground>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Login</CardTitle>
@@ -50,6 +51,6 @@ export default function LoginPage() {
           </a>
         </CardContent>
       </Card>
-    </div>
+    </WavyBackground>
   );
 }
