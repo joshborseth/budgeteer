@@ -1,5 +1,11 @@
 import { type InferSelectModel, relations } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  int,
+  integer,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
@@ -17,11 +23,25 @@ export const session = sqliteTable("session", {
   }).notNull(),
 });
 
-export const list = sqliteTable("list", {
+export const list = sqliteTable(
+  "list",
+  {
+    id: text("id").primaryKey(),
+    userId: integer("userId")
+      .notNull()
+      .references(() => user.id),
+    name: text("name").notNull(),
+  },
+  (table) => [index("list_name_idx").on(table.name)],
+);
+
+export const listItem = sqliteTable("list_item", {
   id: text("id").primaryKey(),
-  userId: integer("userId")
+  listId: integer("listId")
     .notNull()
-    .references(() => user.id),
+    .references(() => list.id),
+  name: text("name").notNull(),
+  completed: int({ mode: "boolean" }).default(false).notNull(),
 });
 
 export const userRelations = relations(user, ({ many }) => ({
@@ -29,10 +49,18 @@ export const userRelations = relations(user, ({ many }) => ({
   list: many(list),
 }));
 
-export const listRelations = relations(list, ({ one }) => ({
+export const listRelations = relations(list, ({ one, many }) => ({
   user: one(user, {
     fields: [list.userId],
     references: [user.id],
+  }),
+  items: many(listItem),
+}));
+
+export const listItemRelations = relations(listItem, ({ one }) => ({
+  list: one(list, {
+    fields: [listItem.listId],
+    references: [list.id],
   }),
 }));
 
