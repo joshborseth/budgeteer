@@ -1,4 +1,4 @@
-import { ChevronUp, User2 } from "lucide-react";
+import { ChevronUp, Home, List, LucideProps, User2 } from "lucide-react";
 
 import {
   Sidebar,
@@ -17,6 +17,8 @@ import {
 import { type ROUTE } from "@/lib/routes";
 import { getBudgeteerData } from "@/server/lib/getBudgeteerData";
 import Link from "next/link";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { SidebarIconWrapper } from "./SidebarIconWrapper";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarLogoutButton } from "./SidebarLogoutButton";
 import {
@@ -30,22 +32,27 @@ export const items = [
     label: "Dashboard",
     href: "/dashboard",
     sub: false,
+    icon: Home,
   },
   {
     label: "Lists",
     href: "/dashboard/lists",
     sub: true,
+    icon: List,
   },
 ] satisfies Array<
   ROUTE & {
     sub: boolean;
+    icon: ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+    >;
   }
 >;
 
 export async function AppSidebar() {
   const { user } = await getBudgeteerData();
   return (
-    <Sidebar collapsible="offcanvas">
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Budgeteer</SidebarGroupLabel>
@@ -55,23 +62,32 @@ export async function AppSidebar() {
                 <>
                   {item.sub ? (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton tooltip={item.label} asChild>
                         <Link href={item.href}>
-                          <SidebarLink item={item} />
+                          <SidebarIconWrapper>
+                            <item.icon />
+                          </SidebarIconWrapper>
+                          <SidebarLink
+                            item={{ href: item.href, label: item.label }}
+                          />
                         </Link>
                       </SidebarMenuButton>
                       <SidebarMenuSub>
                         <SidebarMenuSubItem>
                           <SidebarMenuSubButton asChild>
                             <Link href={item.href}>
-                              <SidebarLink item={item} />
+                              <SidebarLink
+                                item={{ href: item.href, label: item.label }}
+                              />
                             </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
                           <SidebarMenuSubButton asChild>
                             <Link href={item.href}>
-                              <SidebarLink item={item} />
+                              <SidebarLink
+                                item={{ href: item.href, label: item.label }}
+                              />
                             </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
@@ -79,9 +95,14 @@ export async function AppSidebar() {
                     </SidebarMenuItem>
                   ) : (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton tooltip={item.label} asChild>
                         <Link href={item.href}>
-                          <SidebarLink item={item} />
+                          <SidebarIconWrapper>
+                            <item.icon />
+                          </SidebarIconWrapper>
+                          <SidebarLink
+                            item={{ href: item.href, label: item.label }}
+                          />
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
