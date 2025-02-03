@@ -16,7 +16,6 @@ const items = [
   {
     id: 1,
     name: "Costco",
-
     price: 200,
   },
   {
