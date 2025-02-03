@@ -1,4 +1,4 @@
-import { ChevronUp, Home, List, type LucideProps, User2 } from "lucide-react";
+import { ChevronUp, User2 } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,11 +10,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { type ROUTE } from "@/lib/routes";
 import { getBudgeteerData } from "@/server/lib/getBudgeteerData";
 import Link from "next/link";
-import { type ForwardRefExoticComponent, type RefAttributes } from "react";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarLogoutButton } from "./SidebarLogoutButton";
 import {
@@ -27,41 +29,64 @@ export const items = [
   {
     label: "Dashboard",
     href: "/dashboard",
-    icon: Home,
+    sub: false,
   },
   {
     label: "Lists",
     href: "/dashboard/lists",
-    icon: List,
+    sub: true,
   },
 ] satisfies Array<
   ROUTE & {
-    icon: ForwardRefExoticComponent<
-      Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-    >;
+    sub: boolean;
   }
 >;
 
 export async function AppSidebar() {
   const { user } = await getBudgeteerData();
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="offcanvas">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Budgeteer</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.href}>
-                      <item.icon />
-                      <SidebarLink
-                        item={{ label: item.label, href: item.href }}
-                      />
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <>
+                  {item.sub ? (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton asChild>
+                        <Link href={item.href}>
+                          <SidebarLink item={item} />
+                        </Link>
+                      </SidebarMenuButton>
+                      <SidebarMenuSub>
+                        <SidebarMenuSubItem>
+                          <SidebarMenuSubButton asChild>
+                            <Link href={item.href}>
+                              <SidebarLink item={item} />
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                          <SidebarMenuSubButton asChild>
+                            <Link href={item.href}>
+                              <SidebarLink item={item} />
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      </SidebarMenuSub>
+                    </SidebarMenuItem>
+                  ) : (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton asChild>
+                        <Link href={item.href}>
+                          <SidebarLink item={item} />
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                </>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>

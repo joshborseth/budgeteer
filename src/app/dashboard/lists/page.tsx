@@ -1,9 +1,16 @@
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { ContentWrapper } from "@/components/PageWrapper";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TypographyH2, TypographyP } from "@/components/ui/typography";
 import { ROUTES } from "@/lib/routes";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 
 const groceryLists = [
@@ -52,37 +59,50 @@ export default function Page() {
   }));
   return (
     <>
-      <BreadCrumbs activePage="Lists" trail={[ROUTES.dashboard]} />
+      <BreadCrumbs
+        activePage="Lists"
+        trail={[ROUTES.dashboard]}
+        actions={
+          <Button size="icon">
+            <Plus />
+          </Button>
+        }
+      />
       <ContentWrapper>
         {sortedGroceryLists.map((list) => (
-          <Link
-            className="group"
-            href={`${ROUTES.lists.href}/${list.id}`}
-            key={list.id}
-          >
-            <Card className="shadow-lg group-hover:bg-muted">
-              <CardHeader className="pb-2">
-                <TypographyH2 className="text-2xl">{list.name}</TypographyH2>
-              </CardHeader>
-              <CardContent>
-                <ScrollArea className="h-48 w-full">
-                  <table className="w-full">
-                    <tbody>
-                      {list.items.map((item, index) => (
-                        <tr key={index} className="border-b last:border-b-0">
-                          <td
-                            className={`py-2 ${item.completed ? "text-muted-foreground line-through" : ""}`}
-                          >
-                            <TypographyP>{item.name}</TypographyP>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </ScrollArea>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card className="shadow-lg" key={list.id}>
+            <CardHeader className="pb-2">
+              <TypographyH2 className="text-2xl">{list.name}</TypographyH2>
+            </CardHeader>
+            <CardContent>
+              <ScrollArea className="h-48 w-full">
+                <table className="w-full">
+                  <tbody>
+                    {list.items.map((item, index) => (
+                      <tr key={index} className="border-b last:border-b-0">
+                        <td
+                          className={`py-2 ${item.completed ? "text-muted-foreground line-through" : ""}`}
+                        >
+                          <TypographyP>{item.name}</TypographyP>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </ScrollArea>
+            </CardContent>
+            <CardFooter>
+              <Link
+                className={buttonVariants({
+                  variant: "secondary",
+                  className: "w-full",
+                })}
+                href={`${ROUTES.lists.href}/${list.name}`}
+              >
+                Edit
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
       </ContentWrapper>
     </>

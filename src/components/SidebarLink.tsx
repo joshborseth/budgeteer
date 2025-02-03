@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { type items } from "./AppSidebar";
 
 export const SidebarLink = (props: {
-  item: Omit<(typeof items)[number], "icon">;
+  item: Pick<(typeof items)[number], "href" | "label">;
 }) => {
   const pathname = usePathname();
   return (
