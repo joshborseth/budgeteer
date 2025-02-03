@@ -15,7 +15,7 @@ export async function SidebarLists() {
       {!!lists?.length && (
         <SidebarMenuSub>
           {lists.map((item) => (
-            <SidebarMenuSubItem>
+            <SidebarMenuSubItem key={item.id}>
               <SidebarMenuSubButton asChild>
                 <Link href={`${ROUTES.lists.href}/${item.name}`}>
                   <SidebarLink
