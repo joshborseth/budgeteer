@@ -15,27 +15,25 @@ import { TypographyP } from "./ui/typography";
 const items = [
   {
     id: 1,
-    name: "DoorDash",
-    description: "Gians Indian Restaurant",
-    price: 100,
+    name: "Costco",
+
+    price: 200,
   },
   {
     id: 2,
-    name: "Amazon",
-    description: "Critter Crunch",
-    price: 55,
+    name: "Fresh Co.",
+    price: 155,
   },
   {
     id: 3,
-    name: "Epic Games",
-    description: "V Bucks",
-    price: 1000,
+    name: "Walmart",
+    price: 69,
   },
 ];
 
 export const LastMonthExpenses = async () => {
   return (
-    <Card className="col-span-2">
+    <Card>
       <CardHeader>
         <CardTitle>Last Month Expenses</CardTitle>
       </CardHeader>
@@ -48,16 +46,9 @@ export const LastMonthExpenses = async () => {
                   className="flex w-full list-disc items-center justify-between"
                   key={i}
                 >
-                  <div className="flex items-center justify-center gap-4">
-                    <div>
-                      <TypographyP className="text-sm font-medium">
-                        {item.name}
-                      </TypographyP>
-                      <TypographyP className="text-xs text-muted-foreground">
-                        {item.description}
-                      </TypographyP>
-                    </div>
-                  </div>
+                  <TypographyP className="text-sm font-medium">
+                    {item.name}
+                  </TypographyP>
                   <TypographyP>${item.price}</TypographyP>
                 </li>
               ),
@@ -66,7 +57,7 @@ export const LastMonthExpenses = async () => {
         </ScrollArea>
       </CardContent>
       <CardFooter>
-        <Link className="w-full" href={ROUTES.track.href}>
+        <Link className="w-full" href={ROUTES.lists.href}>
           <Button className="flex w-full gap-1" size="sm" variant="secondary">
             View All <ArrowUpRightIcon className="h-4 w-4" />
           </Button>

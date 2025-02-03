@@ -8,8 +8,8 @@ export const SidebarLink = (props: {
 }) => {
   const pathname = usePathname();
   return (
-    <span className={cn(pathname === props.item.url && "font-semibold")}>
-      {props.item.title}
+    <span className={cn(pathname === props.item.href && "font-semibold")}>
+      {props.item.label}
     </span>
   );
 };

@@ -1,10 +1,11 @@
-import { generateSessionToken, createSession } from "@/server/auth/session";
+import { ROUTES } from "@/lib/routes";
 import { setSessionTokenCookie } from "@/server/auth/cookie";
 import { google } from "@/server/auth/google";
-import { cookies } from "next/headers";
-import { decodeIdToken, type OAuth2Tokens } from "arctic";
+import { createSession, generateSessionToken } from "@/server/auth/session";
 import { db } from "@/server/db";
 import { user } from "@/server/db/schema";
+import { decodeIdToken, type OAuth2Tokens } from "arctic";
+import { cookies } from "next/headers";
 
 type Claims = {
   sub: string;
@@ -53,7 +54,7 @@ export async function GET(request: Request): Promise<Response> {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/",
+        Location: ROUTES.dashboard.href,
       },
     });
   }
@@ -79,7 +80,7 @@ export async function GET(request: Request): Promise<Response> {
   return new Response(null, {
     status: 302,
     headers: {
-      Location: "/",
+      Location: ROUTES.dashboard.href,
     },
   });
 }

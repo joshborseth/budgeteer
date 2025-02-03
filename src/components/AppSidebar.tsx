@@ -1,4 +1,4 @@
-import { ChevronUp, Home, NotebookPen, User2 } from "lucide-react";
+import { ChevronUp, Home, List, type LucideProps, User2 } from "lucide-react";
 
 import {
   Sidebar,
@@ -11,8 +11,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { type ROUTE } from "@/lib/routes";
 import { getBudgeteerData } from "@/server/lib/getBudgeteerData";
 import Link from "next/link";
+import { type ForwardRefExoticComponent, type RefAttributes } from "react";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarLogoutButton } from "./SidebarLogoutButton";
 import {
@@ -23,16 +25,22 @@ import {
 
 export const items = [
   {
-    title: "Dashboard",
-    url: "/dashboard",
+    label: "Dashboard",
+    href: "/dashboard",
     icon: Home,
   },
   {
-    title: "Track",
-    url: "/dashboard/track",
-    icon: NotebookPen,
+    label: "Lists",
+    href: "/dashboard/lists",
+    icon: List,
   },
-] as const;
+] satisfies Array<
+  ROUTE & {
+    icon: ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+    >;
+  }
+>;
 
 export async function AppSidebar() {
   const { user } = await getBudgeteerData();
@@ -44,12 +52,12 @@ export async function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
+                    <Link href={item.href}>
                       <item.icon />
                       <SidebarLink
-                        item={{ title: item.title, url: item.url }}
+                        item={{ label: item.label, href: item.href }}
                       />
                     </Link>
                   </SidebarMenuButton>

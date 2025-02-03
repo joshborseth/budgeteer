@@ -1,38 +1,5 @@
-import { type InferSelectModel, relations, sql } from "drizzle-orm";
-import { blob, int, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-
-export const transaction = sqliteTable("transaction", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  label: text("label", { length: 256 }).notNull(),
-  createdAt: text("createdAt")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  updatedAt: text("updatedAt")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .$onUpdateFn(() => sql`CURRENT_TIMESTAMP`),
-  transactionDate: text("transactionDate").notNull(),
-  expense: int("expense").notNull(),
-  income: int("income").notNull(),
-  userId: integer("userId")
-    .notNull()
-    .references(() => user.id),
-});
-
-export const statement = sqliteTable("statement", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  label: text("label", { length: 256 }).notNull(),
-  createdAt: text("createdAt")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  csvData: blob("csvData", { mode: "json" }).$type<string[][]>().notNull(),
-  updatedAt: text("updatedAt")
-    .default(sql`CURRENT_TIMESTAMP`)
-    .$onUpdateFn(() => sql`CURRENT_TIMESTAMP`),
-  userId: integer("userId")
-    .notNull()
-    .references(() => user.id),
-  processed: integer("processed", { mode: "boolean" }).default(false),
-});
+import { type InferSelectModel, relations } from "drizzle-orm";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
@@ -50,8 +17,23 @@ export const session = sqliteTable("session", {
   }).notNull(),
 });
 
+export const list = sqliteTable("list", {
+  id: text("id").primaryKey(),
+  userId: integer("userId")
+    .notNull()
+    .references(() => user.id),
+});
+
 export const userRelations = relations(user, ({ many }) => ({
   session: many(session),
+  list: many(list),
+}));
+
+export const listRelations = relations(list, ({ one }) => ({
+  user: one(user, {
+    fields: [list.userId],
+    references: [user.id],
+  }),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({

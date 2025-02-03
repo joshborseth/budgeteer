@@ -1,6 +1,7 @@
 import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { LastMonth } from "@/components/LastMonth";
 import { LastMonthExpenses } from "@/components/LastMonthExpenses";
+import { MostExpensiveStoreLastMonth } from "@/components/MostExpensiveStoreLastMonth";
 import { ContentWrapper } from "@/components/PageWrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,20 +29,20 @@ export default async function Page() {
             </CardDescription>
           </CardHeader>
           <CardFooter>
-            <Link href={ROUTES.track.href}>
+            <Link href={ROUTES.lists.href}>
               <Button className="flex gap-2">
-                Start Tracking <NotebookPenIcon className="h-4 w-4" />
+                Create a List <NotebookPenIcon className="h-4 w-4" />
               </Button>
             </Link>
           </CardFooter>
         </Card>
-        <LastMonth
-          type="spending"
-          amount={4400}
-          overUnder="over"
-          overUnderAmount={100}
+        <LastMonth amount={4400} overUnder="over" overUnderAmount={100} />
+        <MostExpensiveStoreLastMonth
+          amount={200}
+          store="Costco"
+          overUnder="under"
+          overUnderAmount={10}
         />
-        <LastMonth type="income" amount={6000} />
         <LastMonthExpenses />
       </ContentWrapper>
     </>

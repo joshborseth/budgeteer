@@ -7,9 +7,9 @@ export const ROUTES = {
     href: "/dashboard",
     label: "Dashboard",
   },
-  track: {
-    href: "/dashboard/track",
-    label: "Track",
+  lists: {
+    href: "/dashboard/lists",
+    label: "Lists",
   },
 } as const;
 
