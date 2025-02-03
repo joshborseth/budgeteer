@@ -10,16 +10,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { type ROUTE } from "@/lib/routes";
 import { getBudgeteerData } from "@/server/lib/getBudgeteerData";
 import Link from "next/link";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { ForwardRefExoticComponent, RefAttributes, Suspense } from "react";
 import { SidebarIconWrapper } from "./SidebarIconWrapper";
 import { SidebarLink } from "./SidebarLink";
+import { SidebarLists } from "./SidebarLists";
 import { SidebarLogoutButton } from "./SidebarLogoutButton";
 import {
   DropdownMenu,
@@ -72,26 +70,9 @@ export async function AppSidebar() {
                           />
                         </Link>
                       </SidebarMenuButton>
-                      <SidebarMenuSub>
-                        <SidebarMenuSubItem>
-                          <SidebarMenuSubButton asChild>
-                            <Link href={item.href}>
-                              <SidebarLink
-                                item={{ href: item.href, label: item.label }}
-                              />
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                        <SidebarMenuSubItem>
-                          <SidebarMenuSubButton asChild>
-                            <Link href={item.href}>
-                              <SidebarLink
-                                item={{ href: item.href, label: item.label }}
-                              />
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      </SidebarMenuSub>
+                      <Suspense>
+                        <SidebarLists />
+                      </Suspense>
                     </SidebarMenuItem>
                   ) : (
                     <SidebarMenuItem key={item.href}>

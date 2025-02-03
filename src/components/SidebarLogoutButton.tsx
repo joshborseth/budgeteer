@@ -1,6 +1,6 @@
 "use client";
 
-import { logoutAction } from "@/server/actions/logout";
+import { logoutAction } from "@/server/actions";
 import { DropdownMenuItem } from "./ui/dropdown-menu";
 
 export const SidebarLogoutButton = () => {

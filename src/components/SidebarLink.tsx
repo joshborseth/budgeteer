@@ -1,10 +1,9 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { type items } from "./AppSidebar";
 
 export const SidebarLink = (props: {
-  item: Pick<(typeof items)[number], "href" | "label">;
+  item: { href: string; label: string };
 }) => {
   const pathname = usePathname();
   return (
