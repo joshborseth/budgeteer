@@ -1,12 +1,11 @@
 import { BreadCrumbs } from "@/components/BreadCrumbs";
-import { ListItemsOuter, SkeletonListItems } from "@/components/ListItems";
-import { ContentWrapper } from "@/components/PageWrapper";
+
+import { GridLayout } from "@/components/layouts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TypographyH2 } from "@/components/ui/typography";
 import { ROUTES } from "@/lib/routes";
 import { Plus } from "lucide-react";
-import { Suspense } from "react";
 
 export default async function Page(props: {
   params: Promise<{ name: string }>;
@@ -19,23 +18,19 @@ export default async function Page(props: {
         activePage={decodedName}
         trail={[ROUTES.dashboard, ROUTES.lists]}
         actions={
-          <Button size="icon" variant="secondary">
+          <Button size="icon">
             <Plus />
           </Button>
         }
       />
-      <ContentWrapper>
+      <GridLayout>
         <Card className="shadow-lg">
           <CardHeader className="pb-2">
             <TypographyH2 className="text-2xl">{decodedName}</TypographyH2>
           </CardHeader>
-          <CardContent>
-            <Suspense fallback={<SkeletonListItems />}>
-              <ListItemsOuter name={decodedName} />
-            </Suspense>
-          </CardContent>
+          <CardContent>{decodedName} list items</CardContent>
         </Card>
-      </ContentWrapper>
+      </GridLayout>
     </>
   );
 }

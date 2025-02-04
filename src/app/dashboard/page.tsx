@@ -2,7 +2,7 @@ import { BreadCrumbs } from "@/components/BreadCrumbs";
 import { LastMonth } from "@/components/LastMonth";
 import { LastMonthExpenses } from "@/components/LastMonthExpenses";
 import { MostExpensiveStoreLastMonth } from "@/components/MostExpensiveStoreLastMonth";
-import { ContentWrapper } from "@/components/PageWrapper";
+import { GridLayout } from "@/components/layouts";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,7 +19,7 @@ export default async function Page() {
   return (
     <>
       <BreadCrumbs activePage={ROUTES.dashboard.label} trail={[]} />
-      <ContentWrapper>
+      <GridLayout>
         <Card>
           <CardHeader className="pb-3">
             <CardTitle>Dashboard</CardTitle>
@@ -44,7 +44,7 @@ export default async function Page() {
           overUnderAmount={10}
         />
         <LastMonthExpenses />
-      </ContentWrapper>
+      </GridLayout>
     </>
   );
 }

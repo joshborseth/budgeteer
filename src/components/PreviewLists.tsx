@@ -1,4 +1,7 @@
-import { ListItemsInner, SkeletonListItems } from "@/components/ListItems";
+import {
+  PreviewListItems,
+  PreviewListItemsSkeleton,
+} from "@/components/ListItems";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -11,7 +14,7 @@ import { ROUTES } from "@/lib/routes";
 import { getLists } from "@/server/queries";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
-export const Lists = async () => {
+export const PreviewLists = async () => {
   const lists = await getLists();
   return (
     <>
@@ -21,7 +24,7 @@ export const Lists = async () => {
             <TypographyH2 className="text-2xl">{list.name}</TypographyH2>
           </CardHeader>
           <CardContent>
-            <ListItemsInner items={list.items} />
+            <PreviewListItems items={list.items} />
           </CardContent>
           <CardFooter>
             <Link
@@ -40,7 +43,7 @@ export const Lists = async () => {
   );
 };
 
-export const ListsSkeleton = () => {
+export const PreviewListsSkeleton = () => {
   return (
     <>
       {Array.from({ length: 4 }).map((_, index) => (
@@ -49,7 +52,7 @@ export const ListsSkeleton = () => {
             <Skeleton className="h-12 w-full" />
           </CardHeader>
           <CardContent>
-            <SkeletonListItems />
+            <PreviewListItemsSkeleton />
           </CardContent>
           <CardFooter>
             <Skeleton className="h-12 w-full" />

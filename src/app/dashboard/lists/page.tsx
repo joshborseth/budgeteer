@@ -1,6 +1,6 @@
 import { BreadCrumbs } from "@/components/BreadCrumbs";
-import { Lists, ListsSkeleton } from "@/components/Lists";
-import { ContentWrapper } from "@/components/PageWrapper";
+import { GridLayout } from "@/components/layouts";
+import { PreviewLists, PreviewListsSkeleton } from "@/components/PreviewLists";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/routes";
 import { Plus } from "lucide-react";
@@ -13,16 +13,16 @@ export default async function Page() {
         activePage="Lists"
         trail={[ROUTES.dashboard]}
         actions={
-          <Button size="icon" variant="secondary">
+          <Button size="icon">
             <Plus />
           </Button>
         }
       />
-      <ContentWrapper>
-        <Suspense fallback={<ListsSkeleton />}>
-          <Lists />
+      <GridLayout>
+        <Suspense fallback={<PreviewListsSkeleton />}>
+          <PreviewLists />
         </Suspense>
-      </ContentWrapper>
+      </GridLayout>
     </>
   );
 }

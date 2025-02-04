@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* THIS IS CUSTOM DONT CHANGE */
 @layer base {
   :root {
     --background: 0 0% 100%;

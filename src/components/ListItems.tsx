@@ -1,11 +1,10 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { TypographyP } from "@/components/ui/typography";
-import { getListByName } from "@/server/queries";
 import { InferSelectModel } from "drizzle-orm";
 import { listItem } from "../server/db/schema";
+import { ScrollArea } from "./ui/scroll-area";
 import { Skeleton } from "./ui/skeleton";
 
-export const ListItemsInner = async ({
+export const PreviewListItems = async ({
   items,
 }: {
   items: InferSelectModel<typeof listItem>[];
@@ -29,12 +28,7 @@ export const ListItemsInner = async ({
   );
 };
 
-export const ListItemsOuter = async ({ name }: { name: string }) => {
-  const list = await getListByName(name);
-  return <ListItemsInner items={list.items} />;
-};
-
-export const SkeletonListItems = () => {
+export const PreviewListItemsSkeleton = () => {
   return (
     <table className="w-full">
       <tbody>
