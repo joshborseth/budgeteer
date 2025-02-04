@@ -2,6 +2,7 @@
 /* eslint-disable */
 //@ts-nocheck we need to ignore this because its dumb code copied from aceternity
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
@@ -82,8 +83,12 @@ export const WavyBackground = ({
   };
 
   let animationId: number;
+  const { resolvedTheme } = useTheme();
   const render = () => {
-    ctx.fillStyle = backgroundFill || "white";
+    ctx.fillStyle =
+      backgroundFill || resolvedTheme === "light"
+        ? "hsl(0 0% 100%)"
+        : "hsl(224 71.4% 4.1%)";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
     drawWave(5);
