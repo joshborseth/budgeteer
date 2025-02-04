@@ -19,6 +19,7 @@ import { SidebarIconWrapper } from "./SidebarIconWrapper";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarLists } from "./SidebarLists";
 import { SidebarLogoutButton } from "./SidebarLogoutButton";
+import { ModeToggle } from "./ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -95,6 +96,7 @@ export async function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
+        <ModeToggle />
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>

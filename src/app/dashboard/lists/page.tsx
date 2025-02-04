@@ -13,7 +13,7 @@ export default async function Page() {
         activePage="Lists"
         trail={[ROUTES.dashboard]}
         actions={
-          <Button size="icon">
+          <Button size="icon" variant="secondary">
             <Plus />
           </Button>
         }

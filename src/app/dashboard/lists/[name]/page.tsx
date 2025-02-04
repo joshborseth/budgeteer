@@ -19,7 +19,7 @@ export default async function Page(props: {
         activePage={decodedName}
         trail={[ROUTES.dashboard, ROUTES.lists]}
         actions={
-          <Button size="icon">
+          <Button size="icon" variant="secondary">
             <Plus />
           </Button>
         }
