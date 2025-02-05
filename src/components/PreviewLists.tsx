@@ -32,7 +32,7 @@ export const PreviewLists = async () => {
                 variant: "secondary",
                 className: "w-full",
               })}
-              href={`${ROUTES.lists.href}/${list.name}`}
+              href={`${ROUTES.lists.href}/${list.id}`}
             >
               Edit
             </Link>

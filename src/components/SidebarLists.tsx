@@ -17,10 +17,10 @@ export async function SidebarLists() {
           {lists.map((item) => (
             <SidebarMenuSubItem key={item.id}>
               <SidebarMenuSubButton asChild>
-                <Link href={`${ROUTES.lists.href}/${item.name}`}>
+                <Link href={`${ROUTES.lists.href}/${item.id}`}>
                   <SidebarLink
                     item={{
-                      href: `${ROUTES.lists.href}/${item.name}`,
+                      href: `${ROUTES.lists.href}/${item.id}`,
                       label: item.name,
                     }}
                   />
