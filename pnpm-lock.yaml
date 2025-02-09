@@ -95,12 +95,12 @@ importers:
       next:
         specifier: ^15.1.6
         version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next-safe-action:
+        specifier: ^7.10.3
+        version: 7.10.3(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(zod@3.24.1)
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      papaparse:
-        specifier: ^5.5.2
-        version: 5.5.2
       radash:
         specifier: ^12.1.0
         version: 12.1.0
@@ -134,15 +134,9 @@ importers:
       zod:
         specifier: ^3.24.1
         version: 3.24.1
-      zsa:
-        specifier: ^0.5.1
-        version: 0.5.1(zod@3.24.1)
-      zsa-react:
-        specifier: ^0.2.3
-        version: 0.2.3(react@19.0.0)(zod@3.24.1)
-      zsa-react-query:
-        specifier: ^0.2.1
-        version: 0.2.1(@tanstack/react-query@5.66.0(react@19.0.0))(react@19.0.0)(zod@3.24.1)
+      zod-form-data:
+        specifier: ^2.0.5
+        version: 2.0.5(zod@3.24.1)
     devDependencies:
       '@types/eslint':
         specifier: ^8.56.12
@@ -153,9 +147,6 @@ importers:
       '@types/node':
         specifier: ^20.17.16
         version: 20.17.16
-      '@types/papaparse':
-        specifier: ^5.3.15
-        version: 5.3.15
       '@types/react':
         specifier: ^19.0.8
         version: 19.0.8
@@ -1314,9 +1305,6 @@ packages:
 
   '@types/node@20.17.16':
     resolution: {integrity: sha512-vOTpLduLkZXePLxHiHsBLp98mHGnl8RptV4YAO3HfKO5UHjDvySGbxKtpYfy8Sx5+WKcgc45qNreJJRVM3L6mw==}
-
-  '@types/papaparse@5.3.15':
-    resolution: {integrity: sha512-JHe6vF6x/8Z85nCX4yFdDslN11d+1pr12E526X8WAfhadOeaOTx5AuIkvDKIBopfvlzpzkdMx4YyvSKCM9oqtw==}
 
   '@types/react-dom@19.0.3':
     resolution: {integrity: sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==}
@@ -2481,6 +2469,27 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  next-safe-action@7.10.3:
+    resolution: {integrity: sha512-Kn4zTnOiRkfWfQ0DH94I79Eycq6i+qS6WzhuGzxlWhVe6/yrEXHt+yU4GdqJ1O7vLyDAOWv4rXaRu+FkfVUAqQ==}
+    engines: {node: '>=18.17'}
+    peerDependencies:
+      '@sinclair/typebox': '>= 0.33.3'
+      next: '>= 14.0.0'
+      react: '>= 18.2.0'
+      react-dom: '>= 18.2.0'
+      valibot: '>= 0.36.0'
+      yup: '>= 1.0.0'
+      zod: '>= 3.0.0'
+    peerDependenciesMeta:
+      '@sinclair/typebox':
+        optional: true
+      valibot:
+        optional: true
+      yup:
+        optional: true
+      zod:
+        optional: true
+
   next-themes@0.3.0:
     resolution: {integrity: sha512-/QHIrsYpd6Kfk7xakK4svpDI5mmXP0gfvCoJdGpZQ2TOrQZmsW0QxjaiLn8wbIKjtm4BTSqLoix4lxYYOnLJ/w==}
     peerDependencies:
@@ -2577,9 +2586,6 @@ packages:
 
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
-
-  papaparse@5.5.2:
-    resolution: {integrity: sha512-PZXg8UuAc4PcVwLosEEDYjPyfWnTEhOrUfdv+3Bx+NuAb+5NhDmXzg5fHWmdCh1mP5p7JAZfFr3IMQfcntNAdA==}
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -3220,26 +3226,13 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod-form-data@2.0.5:
+    resolution: {integrity: sha512-T7dV6lTBCwkd8PyvJVCnjXKpgXomU8gEm/TcvEZY7qNdRhIo9T17HrdlHIK68PzTAYaV2HxR9rgwpTSWv0L+QQ==}
+    peerDependencies:
+      zod: '>= 3.11.0'
+
   zod@3.24.1:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
-
-  zsa-react-query@0.2.1:
-    resolution: {integrity: sha512-/2IbJFGOneghpNlqd+VdNXNUzxYdPKIyGADcWGFS8gbUIBNyzdkZqcUqHxeU9Qwu9t7I8jbQHGkpV775kbq3Ng==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.0.0
-      react: ^18.0.0 || ^19.0.0
-      zod: ^3.23.5
-
-  zsa-react@0.2.3:
-    resolution: {integrity: sha512-THCoIIhtEU3jXTrNBM/PBc0PyHCekizSGEc+fg0LGo1NM1J02LFQN7ICR948X25IjtkZdvxUZmT0+M73GG8eEw==}
-    peerDependencies:
-      react: ^18.0.0 || ^19.0.0
-      zod: ^3.23.5
-
-  zsa@0.5.1:
-    resolution: {integrity: sha512-8QI/SQrcdVFTlcFYGvKbB9UroLVZ0LJNEI1aVZUD2ASsRWqrgz1aEGqPAvuMgr+MM9+PQ3AyH8zspAcvbd2FoA==}
-    peerDependencies:
-      zod: ^3.23.5
 
 snapshots:
 
@@ -4152,10 +4145,6 @@ snapshots:
   '@types/node@20.17.16':
     dependencies:
       undici-types: 6.19.8
-
-  '@types/papaparse@5.3.15':
-    dependencies:
-      '@types/node': 20.17.16
 
   '@types/react-dom@19.0.3(@types/react@19.0.8)':
     dependencies:
@@ -5478,6 +5467,14 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  next-safe-action@7.10.3(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(zod@3.24.1):
+    dependencies:
+      next: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    optionalDependencies:
+      zod: 3.24.1
+
   next-themes@0.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -5589,8 +5586,6 @@ snapshots:
       p-limit: 3.1.0
 
   package-json-from-dist@1.0.1: {}
-
-  papaparse@5.5.2: {}
 
   parent-module@1.0.1:
     dependencies:
@@ -6274,21 +6269,8 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
+  zod-form-data@2.0.5(zod@3.24.1):
+    dependencies:
+      zod: 3.24.1
+
   zod@3.24.1: {}
-
-  zsa-react-query@0.2.1(@tanstack/react-query@5.66.0(react@19.0.0))(react@19.0.0)(zod@3.24.1):
-    dependencies:
-      '@tanstack/react-query': 5.66.0(react@19.0.0)
-      react: 19.0.0
-      zod: 3.24.1
-      zsa: 0.5.1(zod@3.24.1)
-
-  zsa-react@0.2.3(react@19.0.0)(zod@3.24.1):
-    dependencies:
-      react: 19.0.0
-      zod: 3.24.1
-      zsa: 0.5.1(zod@3.24.1)
-
-  zsa@0.5.1(zod@3.24.1):
-    dependencies:
-      zod: 3.24.1

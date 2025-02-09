@@ -14,7 +14,12 @@ import {
 import { type ROUTE } from "@/lib/routes";
 import { getBudgeteerData } from "@/server/lib/getBudgeteerData";
 import Link from "next/link";
-import { ForwardRefExoticComponent, RefAttributes, Suspense } from "react";
+import {
+  ForwardRefExoticComponent,
+  Fragment,
+  RefAttributes,
+  Suspense,
+} from "react";
 import { SidebarIconWrapper } from "./SidebarIconWrapper";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarLists } from "./SidebarLists";
@@ -58,9 +63,9 @@ export async function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <>
+                <Fragment key={item.href}>
                   {item.sub ? (
-                    <SidebarMenuItem key={item.href}>
+                    <SidebarMenuItem>
                       <SidebarMenuButton tooltip={item.label} asChild>
                         <Link href={item.href}>
                           <SidebarIconWrapper>
@@ -76,7 +81,7 @@ export async function AppSidebar() {
                       </Suspense>
                     </SidebarMenuItem>
                   ) : (
-                    <SidebarMenuItem key={item.href}>
+                    <SidebarMenuItem>
                       <SidebarMenuButton tooltip={item.label} asChild>
                         <Link href={item.href}>
                           <SidebarIconWrapper>
@@ -89,7 +94,7 @@ export async function AppSidebar() {
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )}
-                </>
+                </Fragment>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
