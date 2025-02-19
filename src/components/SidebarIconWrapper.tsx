@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useSidebar } from "./ui/sidebar";
 
 export const SidebarIconWrapper = (props: { children: ReactNode }) => {
