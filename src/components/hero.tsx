@@ -15,18 +15,20 @@ export const Hero = ({
   };
 }) => {
   return (
-    <div className="flex max-w-lg flex-col items-center gap-8 text-center">
-      <div className="flex flex-col gap-2">
-        <TypographyH1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
-          {title}
-        </TypographyH1>
-        <TypographyP className="text-xl font-normal md:text-2xl">
-          {description}
-        </TypographyP>
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="flex max-w-lg flex-col items-center gap-8 text-center">
+        <div className="flex flex-col gap-2">
+          <TypographyH1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+            {title}
+          </TypographyH1>
+          <TypographyP className="text-xl font-normal md:text-2xl">
+            {description}
+          </TypographyP>
+        </div>
+        <Link href={link.href}>
+          <Button>{link.label}</Button>
+        </Link>
       </div>
-      <Link href={link.href}>
-        <Button>{link.label}</Button>
-      </Link>
     </div>
   );
 };
