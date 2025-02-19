@@ -1,6 +1,6 @@
 import { TypographyP } from "@/components/ui/typography";
-import { InferSelectModel } from "drizzle-orm";
-import { listItem } from "../server/db/schema";
+import { type InferSelectModel } from "drizzle-orm";
+import { type listItem } from "../server/db/schema";
 import { ScrollArea } from "./ui/scroll-area";
 import { Skeleton } from "./ui/skeleton";
 

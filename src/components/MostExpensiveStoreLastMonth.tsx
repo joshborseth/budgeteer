@@ -31,7 +31,7 @@ export const MostExpensiveStoreLastMonth = (props: {
               </TypographyP>
             </Badge>
           ) : (
-            <Badge variant="success">
+            <Badge variant="secondary">
               <TypographyP className="text-xs">
                 ${props.overUnderAmount} less than usual
               </TypographyP>

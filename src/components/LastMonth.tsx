@@ -30,7 +30,7 @@ export const LastMonth = (props: {
               </TypographyP>
             </Badge>
           ) : (
-            <Badge variant="success">
+            <Badge variant="secondary">
               <TypographyP className="text-xs">
                 ${props.overUnderAmount} under budget
               </TypographyP>
